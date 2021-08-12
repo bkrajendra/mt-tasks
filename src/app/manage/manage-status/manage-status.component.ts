@@ -35,9 +35,6 @@ export class ManageStatusComponent implements OnInit {
     console.log(event.container.id);
     console.log(event.item.data);
 
-    // Update task after retreiving Task details and container id whre task being dropped
-    this.updateTask(event.item.data, event.container.id);
-
     // Handle drag drop behavier.
     if (event.previousContainer === event.container) {
       moveItemInArray(
@@ -45,6 +42,7 @@ export class ManageStatusComponent implements OnInit {
         event.previousIndex,
         event.currentIndex
       );
+      console.log('state change not done');
     } else {
       transferArrayItem(
         event.previousContainer.data,
@@ -52,6 +50,9 @@ export class ManageStatusComponent implements OnInit {
         event.previousIndex,
         event.currentIndex
       );
+      console.log('state change done');
+      // Update task after retreiving Task details and container id whre task being dropped
+      this.updateTask(event.item.data, event.container.id);
     }
   }
   loadAllTasks() {
@@ -59,15 +60,19 @@ export class ManageStatusComponent implements OnInit {
       console.log(dbTasks);
 
       // Tasks classification by their status into different task-arrays
-      this.open_tasks = dbTasks.filter(t => t.status===Status.open);
-      this.inprogress_tasks = dbTasks.filter(t => t.status===Status.inprogress);
-      this.completed_tasks = dbTasks.filter(t => t.status===Status.completed);
+      this.open_tasks = dbTasks.filter((t) => t.status === Status.open);
+      this.inprogress_tasks = dbTasks.filter(
+        (t) => t.status === Status.inprogress
+      );
+      this.completed_tasks = dbTasks.filter(
+        (t) => t.status === Status.completed
+      );
     });
   }
 
   updateTask(task: Task, status_id: string) {
     //identify target status box and convert it to status value
-    let status:any = status_id.split('_')[1];
+    let status: any = status_id.split('_')[1];
 
     //update date not needed as its created_date. but just to demonstrate can be appplied to update_at
     task.created_at = Date.now().toString();
@@ -87,13 +92,13 @@ export class ManageStatusComponent implements OnInit {
 
   // String to Status Enum
   getStatus(status: string): Status {
-    if(status === 'open'){
+    if (status === 'open') {
       return Status.open;
     }
-    if(status === 'inprogress'){
+    if (status === 'inprogress') {
       return Status.inprogress;
     }
-    if(status === 'completed'){
+    if (status === 'completed') {
       return Status.completed;
     }
     return Status.notknown;
