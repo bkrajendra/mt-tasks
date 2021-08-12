@@ -1,5 +1,4 @@
 import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { TaskApiService } from 'src/app/central/services/task-api.service';
 import { Task } from '../../central/task';
 import { MatTableDataSource } from '@angular/material/table';

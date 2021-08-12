@@ -7,24 +7,24 @@
     >
       <mat-icon>task</mat-icon>
     </button>
-    <span>Tasks {{ pageTitle }}</span>
+    <span>Tasks - {{ pageTitle }}</span>
     <span class="full-width"></span>
       <button
-      color="accent"
+      [color]="pageTitle==='Manage Task'?'accent':''"
         routerLink="/manage/manage-task"
-        routerLinkActive="active"
+        routerLinkActive=""
         mat-raised-button
       >
-        Manage Task
+        Manage Task{{ pageTitle }}
       </button>
 
       <button
-      color="accent"
+      [color]="pageTitle==='Manage Status'?'accent':''"
         routerLink="/manage/manage-status"
         routerLinkActive="active"
         mat-raised-button
       >
-        Manage Status
+        Manage Status{{ pageTitle }}
       </button>
   </mat-toolbar>
 </header>

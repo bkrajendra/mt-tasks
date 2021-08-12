@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 
 
@@ -9,6 +9,7 @@ import { NavigationEnd, Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   pageTitle: string = ''; // Init Page title
+
   constructor(
     private router:Router
   ) { 
@@ -18,7 +19,9 @@ export class HeaderComponent implements OnInit {
       if(event instanceof NavigationEnd){ 
         console.log(this.router.url);
         //Little hack to get the page title from route url
-        this.pageTitle = ' - ' + this.router.url.split('/')[2].split('-').map(w => {return w.replace(w[0],w[0].toUpperCase())}).join(' ')
+        this.pageTitle = this.router.url.split('/')[2].split('-').map(w => {return w.replace(w[0],w[0].toUpperCase())}).join(' ');
+        console.log(this.pageTitle);
+        
       }
     });
   }
