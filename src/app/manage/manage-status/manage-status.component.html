@@ -1,64 +1,87 @@
-
-<br>
-<br>
-<mat-grid-list cols="3" rowHeight="400px">
-
-  <mat-grid-tile>
-    <div class="status-box">
-     <h2>Open</h2>
-  
-      <div
-        cdkDropList
-        #open = "cdkDropList"
-        id="id_open"
-        [cdkDropListData]="open_tasks"
-        class="task_list"
-        cdkDropListSortingDisabled
-        [cdkDropListConnectedTo]="[inprogress,completed]"
-        (cdkDropListDropped)="drop($event)"
+<br />
+<mat-grid-list cols="3" rowHeight="400px" gutterSize="15px">
+  <mat-grid-tile colspan="1">
+    <!-- <div class="status-box"> -->
+    <mat-card class="full-width">
+      <mat-card-title>Open</mat-card-title>
+      <mat-card-content>
+        <div
+          cdkDropList
+          #open="cdkDropList"
+          id="id_open"
+          [cdkDropListData]="open_tasks"
+          class="task_list"
+          cdkDropListSortingDisabled
+          [cdkDropListConnectedTo]="[inprogress, completed]"
+          (cdkDropListDropped)="drop($event)"
         >
-        <div class="task_item" [cdkDragData]="task" *ngFor="let task of open_tasks" cdkDrag>{{task.id}} - {{task.title}} [{{task.status}}]</div>
-      </div>
-    </div>
+          <div
+            class="task_item"
+            [cdkDragData]="task"
+            *ngFor="let task of open_tasks"
+            cdkDrag
+          >
+            {{ task.id }} - {{ task.title }} [{{ task.status }}]
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+    <!-- </div> -->
   </mat-grid-tile>
-  <mat-grid-tile>
-    <div class="status-box">
-      <h2>In-Progress</h2>
-  
-      <div
-        cdkDropList
-        #inprogress = "cdkDropList"
-        id="id_inprogress"
-        [cdkDropListData]="inprogress_tasks"
-        class="task_list"
-        cdkDropListSortingDisabled
-        [cdkDropListConnectedTo]="[open,completed]"
-        (cdkDropListDropped)="drop($event)">
-        <div class="task_item" [cdkDragData]="task" *ngFor="let task of inprogress_tasks" cdkDrag>{{task.id}} - {{task.title}}[{{task.status}}]</div>
-      </div>
-    </div>
+  <mat-grid-tile colspan="1">
+    <!-- <div class="status-box"> -->
+    <mat-card class="full-width">
+      <mat-card-title>In-Progress</mat-card-title>
+      <mat-card-content>
+        <div
+          cdkDropList
+          #inprogress="cdkDropList"
+          id="id_inprogress"
+          [cdkDropListData]="inprogress_tasks"
+          class="task_list"
+          cdkDropListSortingDisabled
+          [cdkDropListConnectedTo]="[open, completed]"
+          (cdkDropListDropped)="drop($event)"
+        >
+          <div
+            class="task_item"
+            [cdkDragData]="task"
+            *ngFor="let task of inprogress_tasks"
+            cdkDrag
+          >
+            {{ task.id }} - {{ task.title }}[{{ task.status }}]
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+    <!-- </div> -->
   </mat-grid-tile>
-  <mat-grid-tile>
-    <div class="status-box">
-      <h2>Completed</h2>
-  
-      <div
-        cdkDropList
-        #completed = "cdkDropList"
-        id="id_completed"
-        [cdkDropListData]="completed_tasks"
-        class="task_list"
-        cdkDropListSortingDisabled
-        [cdkDropListConnectedTo]="[open,inprogress]"
-        (cdkDropListDropped)="drop($event)">
-        <div class="task_item" [cdkDragData]="task" *ngFor="let task of completed_tasks" cdkDrag>{{task.id}} - {{task.title}}[{{task.status}}]</div>
-      </div>
-    </div>
+  <mat-grid-tile colspan="1">
+    <!-- <div class="status-box"> -->
+    <mat-card class="full-width">
+      <mat-card-title>Completed</mat-card-title>
+      <mat-card-content>
+        <div
+          cdkDropList
+          #completed="cdkDropList"
+          id="id_completed"
+          [cdkDropListData]="completed_tasks"
+          class="task_list"
+          cdkDropListSortingDisabled
+          [cdkDropListConnectedTo]="[open, inprogress]"
+          (cdkDropListDropped)="drop($event)"
+        >
+          <div
+            class="task_item"
+            [cdkDragData]="task"
+            *ngFor="let task of completed_tasks"
+            cdkDrag
+          >
+            {{ task.id }} - {{ task.title }}[{{ task.status }}]
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+    <!-- </div> -->
   </mat-grid-tile>
-
 </mat-grid-list>
-
-
-  
-
-  
