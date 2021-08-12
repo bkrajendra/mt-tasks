@@ -16,11 +16,14 @@ Application has two top menu options to showcase the two parts of machine test.
 - PART 2 - Manage Status
 
 
-
-
 ## Project Structure
 
-![alt text][logo]
+![alt text][structure]
 
 
-[logo]: struct.png  "Project Structure"
+## Screenshot
+
+![alt text][capture]
+
+[structure]: struct.png  "Project Structure"
+[capture]: capture.png  "Project Structure"
