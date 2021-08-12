@@ -7,6 +7,10 @@ import { ManageTasksComponent } from './manage-tasks/manage-tasks.component';
 import { UsedMatModules } from '../central/mat-modules';
 import { FormsModule } from '@angular/forms';
 
+// Manage Module to  manage Tasks and Task states
+// With two componenets manage-tasks and manage-status
+// manage-taks - fascilitate task creation, listing and updating
+// manage-status - status update by simple drog-drop
 
 @NgModule({
   declarations: [
@@ -16,8 +20,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     ManageRoutingModule,
-    UsedMatModules,
-    FormsModule
+    UsedMatModules, // needed for importing required material modules into manage-module
+    FormsModule // for handling forms
   ]
 })
 export class ManageModule { }

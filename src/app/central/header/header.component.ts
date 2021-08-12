@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit {
   ) { 
     router.events.subscribe(event => {
       console.log(event)
-      // check if its navigation-end event of cycle to get proper path
+      // check if its navigation-end event of cycle to get proper route path
       if(event instanceof NavigationEnd){ 
         console.log(this.router.url);
         //Little hack to get the page title from route url

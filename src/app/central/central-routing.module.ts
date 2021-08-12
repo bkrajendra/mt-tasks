@@ -8,11 +8,11 @@ const routes: Routes = [
       redirectTo: 'manage',
       pathMatch: 'full'
   },
-  {
+  {//lazy loading other parts of projects [this will load modules containing task and status manager routes]
       path: 'manage',
       loadChildren: () => import('../manage/manage.module').then(m => m.ManageModule)
   },
-  {
+  {// just to handle page-not-found issue.
       path: '**',
       component: ErrorPageComponent
   }

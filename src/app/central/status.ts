@@ -1,3 +1,4 @@
+//Enum to indicate task status
 export enum Status {
     open='open',
     inprogress = 'inprogress',

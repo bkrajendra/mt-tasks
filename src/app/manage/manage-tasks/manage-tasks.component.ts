@@ -6,29 +6,9 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Status } from 'src/app/central/status';
 import { MatPaginator, MatPaginatorIntl } from '@angular/material/paginator';
 
-const ELEMENT_DATA: Task[] = [
-  {
-    id: 1,
-    title: 'Study Nestjs',
-    description: 'Schedule for studying nestjs framework',
-    status: Status.open,
-    created_at: '11/08/2021',
-  },
-  {
-    id: 2,
-    title: 'Chat instance',
-    description: 'Create new Chat instance',
-    status: Status.inprogress,
-    created_at: '11/08/2021',
-  },
-  {
-    id: 3,
-    title: 'Setup Server',
-    description: 'Setup Server for online exam',
-    status: Status.completed,
-    created_at: '11/08/2021',
-  },
-];
+// Manage Task component handles Task add, update and delete.
+// Tasks listing is provided thorugh mat-table functionality.
+
 @Component({
   selector: 'app-manage-tasks',
   templateUrl: './manage-tasks.component.html',
@@ -37,23 +17,35 @@ const ELEMENT_DATA: Task[] = [
 export class ManageTasksComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
  
-  status = Status;
+  // get status enums to be populated in form status drop down
+  // This can be just replaced by simple static drop down.
+  status = Status; 
+
   title = 'Manage Task';
+
+  // Initialize task to be used for create/update
   task: Task = { title: '', description: '' };
 
-  // Define column definition
+  // Define table column definition
   dColumns: string[] = ['id', 'title', 'description', 'status', 'created_at', 'action'];
+  
+  // Initialize Data source for mat-table with Task type
   tasksData = new MatTableDataSource<Task>();
+
+  // This is just "getLastInsertedIDd" stuff for tasks-db
   lastid: any = 0;
+
+  // edit box UI visiblitiy for New/Update functionality
+  // Kept two different mat-cards whose visibility is controlled with editMode
   editMode: boolean = false;
 
   constructor(private task_api: TaskApiService) {
-    // MatPaginator undefined issue fix
+    // MatPaginator undefined issue fix - need to initialised
     this.paginator = new MatPaginator(new MatPaginatorIntl(), ChangeDetectorRef.prototype);
   }
 
   ngOnInit(): void {
-    // Load All tasks
+    // Load All tasks and populate data source
     this.showAllTasks();
     
   }
@@ -69,23 +61,36 @@ export class ManageTasksComponent implements OnInit, AfterViewInit {
 
       console.log(this.lastid);
 
-      //Load data from api-service to taskData data source.
+      //Load data from task-api service to taskData data source.
       this.tasksData = new MatTableDataSource(d);
+
+      // Assign paginator to datasource pagination
       this.tasksData.paginator = this.paginator;
+
+      // make sure to set editMode UI disabled and create UI box is enabled
+      // Text boxes can be cleared here to represent new/create Task functionality
       this.editMode = false;
     });
   }
 
   saveTask() {
+    // get latest date string for created_at
     this.task.created_at = Date.now().toString();
+
+    // Increament task.id
     this.task.id = this.lastid + 1;
+
     console.log(this.task);
+
+    // Save taks with POST sevice request call
     this.task_api.saveTasks(this.task).subscribe((resp) => {
       console.log(resp);
+      // Update Task list.
       this.showAllTasks();
     });
   }
 
+  // Delete a Task by its ID
   deleteTask(id: number) {
     this.task_api.deleteTask(id).subscribe((resp) => {
       console.log(resp);
@@ -93,9 +98,12 @@ export class ManageTasksComponent implements OnInit, AfterViewInit {
     });
   }
 
+  // Update Task by ID
   updateTask() {
     this.task.created_at = Date.now().toString();
     console.log(this.task);
+
+    // Update Task by its ID with PUT service call
     this.task_api.updateTask(this.task).subscribe((resp) => {
       console.log(resp);
       this.showAllTasks();
@@ -103,9 +111,11 @@ export class ManageTasksComponent implements OnInit, AfterViewInit {
   }
 
   LoadData(id: number){
+    // Load a Task by Its ID with GET= service call
     this.task_api.getTasksbyID(id).subscribe((d: Task) => {
       console.log(d);
       this.task = d;
+      // Enable Edit Mode UI
       this.editMode = true;
     });
   }

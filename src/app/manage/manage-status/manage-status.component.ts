@@ -27,11 +27,18 @@ export class ManageStatusComponent implements OnInit {
   drop1(event: CdkDragDrop<Task[]>) {
     //moveItemInArray(this.items, event.previousIndex, event.currentIndex);
   }
+
+  // Drag-Drop handler for all cdkDropList
+  // 1 - Identify destination droplist id to understand where item is dropped
+  // 2 - Retreive data (Task) associated with dropped Item
   drop(event: CdkDragDrop<Task[]>) {
     console.log(event.container.id);
     console.log(event.item.data);
+
+    // Update task after retreiving Task details and container id whre task being dropped
     this.updateTask(event.item.data, event.container.id);
 
+    // Handle drag drop behavier.
     if (event.previousContainer === event.container) {
       moveItemInArray(
         event.container.data,
@@ -50,6 +57,7 @@ export class ManageStatusComponent implements OnInit {
   loadAllTasks() {
     this.task_api.getTasks().subscribe((dbTasks: Task[]) => {
       console.log(dbTasks);
+
       // Tasks classification by their status into different task-arrays
       this.open_tasks = dbTasks.filter(t => t.status===Status.open);
       this.inprogress_tasks = dbTasks.filter(t => t.status===Status.inprogress);
@@ -58,10 +66,10 @@ export class ManageStatusComponent implements OnInit {
   }
 
   updateTask(task: Task, status_id: string) {
-    //identify target status box
+    //identify target status box and convert it to status value
     let status:any = status_id.split('_')[1];
 
-    //update date not needed as its created date/ but just to demonstrate can be appplied to update_at
+    //update date not needed as its created_date. but just to demonstrate can be appplied to update_at
     task.created_at = Date.now().toString();
 
     //string value obtained drom target status box need to be converted into enum
@@ -76,6 +84,8 @@ export class ManageStatusComponent implements OnInit {
       this.loadAllTasks();
     });
   }
+
+  // String to Status Enum
   getStatus(status: string): Status {
     if(status === 'open'){
       return Status.open;

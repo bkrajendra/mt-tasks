@@ -1,5 +1,5 @@
 import { Status } from "./status";
-
+// Task Interface to manage task defination
 export interface Task{
     id?: number,
     title: string,
