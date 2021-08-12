@@ -87,6 +87,7 @@ export class ManageTasksComponent implements OnInit, AfterViewInit {
       console.log(resp);
       // Update Task list.
       this.showAllTasks();
+      alert("New Task added!");
     });
   }
 
@@ -107,6 +108,7 @@ export class ManageTasksComponent implements OnInit, AfterViewInit {
     this.task_api.updateTask(this.task).subscribe((resp) => {
       console.log(resp);
       this.showAllTasks();
+      alert("Task with ID [" + this.task.id + "] updated!");
     });
   }
 
