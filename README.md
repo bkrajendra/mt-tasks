@@ -13,7 +13,7 @@ Application has two top menu options to showcase the two parts of machine test.
 
 - PART 1 - Manage Task
 
-- Part 2 - Manage Status
+- PART 2 - Manage Status
 
 
 
