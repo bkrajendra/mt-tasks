@@ -1,0 +1,30 @@
+<header>
+  <mat-toolbar color="primary">
+    <button
+      mat-icon-button
+      class="example-icon"
+      aria-label="Example icon-button with menu icon"
+    >
+      <mat-icon>task</mat-icon>
+    </button>
+    <span>Tasks {{ pageTitle }}</span>
+    <span class="full-width"></span>
+      <button
+      color="accent"
+        routerLink="/manage/manage-task"
+        routerLinkActive="active"
+        mat-raised-button
+      >
+        Manage Task
+      </button>
+
+      <button
+      color="accent"
+        routerLink="/manage/manage-status"
+        routerLinkActive="active"
+        mat-raised-button
+      >
+        Manage Status
+      </button>
+  </mat-toolbar>
+</header>
