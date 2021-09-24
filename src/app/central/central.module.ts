@@ -30,7 +30,7 @@ import { TaskApiService } from './services/task-api.service';
     HeaderComponent, FooterComponent
   ],
   providers: [
-    TaskApiService //task-api service provisioned.
+    {provide: TaskApiService, useClass: TaskApiService} //task-api service provisioned.
   ]
 })
 export class CentralModule { }
