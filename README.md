@@ -1,6 +1,6 @@
 # MtTask
 
-[![CodeSee Map](https://github.com/bkrajendra/mt-tasks/actions/workflows/codesee-arch-diagram.yml/badge.svg)](https://github.com/bkrajendra/mt-tasks/actions/workflows/codesee-arch-diagram.yml)
+[![angular-ci](https://github.com/bkrajendra/mt-tasks/actions/workflows/angular.yaml/badge.svg)](https://github.com/bkrajendra/mt-tasks/actions/workflows/angular.yaml)
 
 for the sake of the fulfillment of test module. 
 
