@@ -1,5 +1,7 @@
 # MtTask
 
+[![CodeSee Map](https://github.com/bkrajendra/mt-tasks/actions/workflows/codesee-arch-diagram.yml/badge.svg)](https://github.com/bkrajendra/mt-tasks/actions/workflows/codesee-arch-diagram.yml)
+
 for the sake of the fulfillment of test module. 
 
 ## Getting started.
