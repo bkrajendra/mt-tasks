@@ -13,7 +13,7 @@ import { Task } from '../task';
 export class TaskApiService {
 
   // end point URL
-api_endpoint = 'http://localhost:3000';
+api_endpoint = 'http://my-json-server.typicode.com/bkrajendra/mt-tasks';
 
   constructor(
     private _http: HttpClient
